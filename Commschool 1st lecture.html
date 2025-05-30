@@ -1,0 +1,736 @@
+<!DOCTYPE html><html lang="ka"><head><meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://code.jquery.com https://unpkg.com https://d3js.org https://threejs.org https://cdn.plot.ly https://stackpath.bootstrapcdn.com https://maps.googleapis.com https://cdn.tailwindcss.com https://ajax.googleapis.com https://kit.fontawesome.com https://cdn.datatables.net https://maxcdn.bootstrapcdn.com https://code.highcharts.com https://tako-static-assets-production.s3.amazonaws.com https://www.youtube.com https://fonts.googleapis.com https://fonts.gstatic.com https://pfst.cf2.poecdn.net https://puc.poecdn.net https://i.imgur.com https://wikimedia.org https://*.icons8.com https://*.giphy.com https://picsum.photos https://images.unsplash.com; frame-src 'self' https://www.youtube.com https://trytako.com; child-src 'self'; manifest-src 'self'; worker-src 'self'; upgrade-insecure-requests; block-all-mixed-content;">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ლექცია #1 - AI შემოქმედებით ინდუსტრიაში</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Georgian:wght@400;700&amp;display=swap" rel="stylesheet">
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Noto Sans Georgian', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #e6e6e6; /* CommSchool green for main background */
+            color: #343a40; /* Darker grey for main text (mostly within sections) */
+            line-height: 1.7;
+            font-size: 16px;
+        }
+
+        .content-wrapper {
+            margin-left: 240px; /* Space for the left navigation menu */
+            transition: margin-left 0.3s ease; /* Smooth transition for responsiveness */
+        }
+
+        /* New Page Header (replaces old header) */
+        .page-header {
+            padding: 40px 20px 30px 20px; /* Generous padding */
+            text-align: center;
+            /* background-color: #f8f9fa; /* Optional: if a slight bg difference is needed from body */
+        }
+
+        .page-header #logo {
+            max-width: 190px; /* Slightly larger logo in the new header */
+            height: auto;
+            margin-bottom: 25px;
+        }
+
+        .page-header h1 {
+            color: #121212; /* User-defined dark color for title */
+            font-size: 2.8em; /* Slightly larger title */
+            font-weight: 700;
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Side Navigation Styles */
+        .side-nav {
+            height: 100%;
+            width: 240px;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            background-color: #ffffff; /* White background for nav */
+            overflow-x: hidden;
+            padding-top: 20px;
+            border-right: 1px solid #e0e0e0; /* Subtle border */
+            box-shadow: 2px 0 5px rgba(0,0,0,0.03);
+        }
+
+        .side-nav .nav-logo {
+            max-width: 150px;
+            display: block;
+            margin: 0 auto 20px auto; /* Center logo */
+        }
+
+        .side-nav a {
+            padding: 12px 15px 12px 25px;
+            text-decoration: none;
+            font-size: 1.0em;
+            color: #212529; /* Darker grey for nav links */
+            display: block;
+            transition: background-color 0.2s ease, color 0.2s ease;
+            border-left: 4px solid transparent; /* For active state indicator */
+            margin-bottom: 5px; /* Space between links */
+        }
+
+        .side-nav a:hover {
+            background-color: #e9ecef; /* Adjusted light grey on hover */
+            color: #00c400; /* Green text on hover */
+        }
+
+        .side-nav a.active {
+            background-color: #e6fcec; /* Light green for active link */
+            color: #005a00; /* Darker green text for active link */
+            border-left-color: #00c400; /* Green indicator for active */
+            font-weight: 700; /* Bolder active link */
+        }
+
+        /* Container for consistent padding and centering */
+        .container {
+            max-width: 1140px; /* Increased max-width for main content */
+            margin: 0 auto; /* Center content */
+            padding: 25px;
+        }
+
+        /* Header Styles - OLD - TO BE REMOVED or repurposed if needed for .page-header */
+        /* header {
+            background-color: transparent; 
+            padding: 25px 20px; 
+            text-align: center;
+            box-shadow: none; 
+        } */
+
+        /* #logo {
+            max-width: 170px; 
+            height: auto;
+            margin-bottom: 20px; 
+        } */
+
+        /* header h1 {
+            color: #121212; 
+            font-size: 2.6em; 
+            font-weight: 700;
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        } */
+
+        /* Section Styles */
+        section {
+            background-color: #ffffff; /* White background for content sections */
+            margin: 35px auto; /* Increased space between sections */
+            padding: 35px 45px; /* Increased padding within sections */
+            border-radius: 10px; /* Slightly more rounded corners */
+            box-shadow: 0 4px 10px rgba(0,0,0,0.04); /* Softer, more diffused shadow */
+        }
+
+        section:last-of-type {
+            margin-bottom: 0;
+        }
+
+        section h2 {
+            color: #00c400; /* User provided green accent for section titles */
+            font-size: 2.1em; /* Adjusted font size */
+            font-weight: 700;
+            margin-top: 0;
+            margin-bottom: 30px; /* More space below title */
+            padding-bottom: 15px;
+            border-bottom: 2px solid #e9ecef; /* Lighter, neutral border under section titles */
+            text-transform: uppercase;
+            letter-spacing: 0.3px; /* Reduced letter-spacing */
+        }
+
+        section h3 {
+            color: #343a40; /* Dark grey for subheadings */
+            font-size: 1.5em; /* Adjusted font size */
+            font-weight: 700;
+            margin-top: 35px; /* Increased top margin */
+            margin-bottom: 18px; /* Increased bottom margin */
+        }
+
+        p, li {
+            font-size: 1.05em; /* Slightly adjusted for readability */
+            color: #495057; /* Medium dark grey for paragraph text */
+        }
+
+        ul {
+            list-style-type: none; /* Remove default bullets */
+            padding-left: 0;
+        }
+
+        ul li {
+            padding-left: 30px; /* Space for custom bullet */
+            position: relative;
+            margin-bottom: 14px; /* Spacing between list items */
+        }
+
+        ul li::before {
+            content: '›'; /* Using a modern chevron bullet */
+            color: #00c400; /* User provided green for the bullet */
+            font-weight: bold;
+            position: absolute;
+            left: 5px; /* Adjusted position */
+            top: -2px; /* Fine-tune vertical alignment */
+            font-size: 1.4em; /* Adjusted size */
+        }
+
+        strong {
+            color: #212529; /* Darker color for emphasized text */
+        }
+
+        /* Practical Task Section Specific Styling */
+        #practical-task {
+            background-color: #e6fcec; /* Light green background for emphasis (derived from #00c400) */
+            border-left: 5px solid #00c400; /* User provided green */
+        }
+
+        #practical-task h2 {
+            color: #008100; /* Darker green for task title (derived from #00c400) */
+            border-bottom-color: #a3cca3; /* Lighter green border (derived from #00c400) */
+        }
+
+        /* Footer Styles */
+        footer {
+            text-align: center;
+            padding: 45px 20px; /* Increased padding */
+            background-color: #eeeeee; /* Slightly darker grey for footer background */
+            color: #555555; /* Medium grey text for footer */
+            font-size: 0.9em; /* Slightly smaller font for footer */
+            margin-top: 45px;
+            border-top: 1px solid #dee2e6; /* Subtle top border */
+        }
+
+        footer img {
+            max-width: 110px; /* Smaller logo in footer */
+            margin-bottom: 20px; /* More space below logo */
+            /* filter: brightness(0) invert(1); -- REMOVED as background is light */
+        }
+        
+        footer p {
+            color: #6c757d; /* Slightly lighter grey for footer text */
+            margin: 10px 0;
+            font-size: 0.95em; /* Adjusted font size */
+        }
+
+        footer a {
+            color: #00c400; /* User provided green */
+            text-decoration: none;
+        }
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .page-header #logo {
+                max-width: 150px;
+            }
+            section {
+                padding: 25px 20px;
+            }
+            .side-nav {
+                display: none; /* Hide nav on smaller screens */
+            }
+            .content-wrapper {
+                margin-left: 0; /* Remove margin when nav is hidden */
+            }
+        }
+
+        @media (max-width: 480px) {
+            .page-header #logo {
+                max-width: 150px;
+            }
+            section h2 {
+                font-size: 1.6em;
+            }
+
+            section h3 {
+                font-size: 1.3em;
+            }
+
+            .container {
+                padding: 15px; /* Adjusted padding */
+            }
+            section {
+                margin: 25px auto; /* Adjusted margin */
+                padding: 20px 15px;
+            }
+            ul li {
+                padding-left: 25px; /* Adjusted padding */
+            }
+            ul li::before {
+                font-size: 1.2em; /* Adjusted size */
+                left: 3px; /* Adjusted position */
+            }
+        }
+
+        /* Prompt Example Styles */
+        .prompt-example {
+            background-color: #f9f9f9;
+            border: 1px solid #e0e0e0;
+            border-left: 4px solid #00c400; /* Green accent */
+            padding: 15px;
+            margin-top: 25px; /* Space above the prompt box */
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+
+        .prompt-example p {
+            margin-bottom: 8px;
+            font-size: 0.95em;
+        }
+
+        .prompt-example strong { /* For "ინსტრუმენტის ტიპი:" and "პრომპტი:" */
+            color: #333;
+        }
+
+        .prompt-example em { /* For the actual prompt text */
+            font-style: normal;
+            background-color: #eff1f3;
+            padding: 2px 5px;
+            border-radius: 3px;
+            display: inline-block;
+            line-height: 1.4;
+        }
+
+        .prompt-example button {
+            background-color: #00c400;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 0.9em;
+            margin-top: 10px;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: background-color 0.2s ease;
+        }
+
+        .prompt-example button:hover {
+            background-color: #009a00; /* Darker green on hover */
+        }
+    </style>
+</head>
+<body>
+    <nav class="side-nav">
+        <img src="Logo/logo1.svg" alt="CommSchool Logo" class="nav-logo">
+        <a href="#what-is-ai" class="active">რა არის AI?</a>
+        <a href="#ai-changes-content">როგორ ცვლის AI კონტენტს</a>
+        <a href="#use-cases">გამოყენების მაგალითები</a>
+        <a href="#ai-tool-types">AI ინსტრუმენტების ტიპები</a>
+        <a href="#capabilities-limitations">შესაძლებლობები და შეზღუდვები</a>
+        <a href="#practical-task">პრაქტიკული დავალება</a>
+        <a href="#resources">სასარგებლო რესურსები</a>
+    </nav>
+
+    <div class="content-wrapper">
+        
+
+        <main class="container">
+            <div class="page-header">
+                <h1>ლექცია #1 - შესავალი: AI შემოქმედებით ინდუსტრიაში</h1>
+            </div>
+            <!-- Section 1: რა არის AI და რატომ არის მნიშვნელოვანი კონტენტ კრეატორებისთვის? -->
+            <section id="what-is-ai">
+                <h2>რა არის AI და რატომ არის მნიშვნელოვანი კონტენტ კრეატორებისთვის?</h2>
+                <p>ხელოვნური ინტელექტი (AI) არის კომპიუტერული მეცნიერების დარგი, რომელიც მიზნად ისახავს მანქანებისთვის ადამიანის მსგავსი ინტელექტუალური შესაძლებლობების მინიჭებას, როგორიცაა სწავლა, პრობლემების გადაჭრა, გადაწყვეტილების მიღება და კრეატიულობა. დღესდღეობით, AI აღარ არის მხოლოდ სამეცნიერო ფანტასტიკის სფერო; ის ჩვენი ყოველდღიურობის განუყოფელი ნაწილი ხდება.</p>
+                <p><strong>კონტენტ კრეატორებისთვის AI-ს მნიშვნელობა განპირობებულია რამდენიმე ფაქტორით:</strong></p>
+                <ul>
+                    <li><strong>ეფექტურობის ზრდა:</strong> AI-ს შეუძლია რუტინული და დროში გაწელილი ამოცანების ავტომატიზება, რაც კრეატორებს საშუალებას აძლევს, მეტი დრო დაუთმონ სტრატეგიულ და შემოქმედებით ასპექტებს.</li>
+                    <li><strong>შემოქმედებითი პოტენციალის გაფართოება:</strong> AI ინსტრუმენტები გვთავაზობენ ახალ გზებს იდეების გენერირების, ვიზუალური მასალის შექმნისა და ტექსტების დაწერისთვის, ხსნიან რა მანამდე მიუწვდომელ შესაძლებლობებს.</li>
+                    <li><strong>პერსონალიზაციის გაღრმავება:</strong> AI ეხმარება აუდიტორიის უკეთ გაგებასა და მათთვის მაქსიმალურად რელევანტური და საინტერესო კონტენტის შექმნაში.</li>
+                    <li><strong>კონკურენტული უპირატესობა:</strong> AI ტექნოლოგიების ათვისება და გამოყენება საშუალებას აძლევს კრეატორებს, იყვნენ ინოვაციურები და გამოირჩეოდნენ მუდმივად ცვალებად ციფრულ ლანდშაფტში.</li>
+                </ul>
+                <p>ამ ლექციაზე დეტალურად განვიხილავთ, თუ როგორ შეგიძლიათ გამოიყენოთ AI თქვენი შემოქმედებითი პროცესების გასაუმჯობესებლად და ახალი სიმაღლეების მისაღწევად.</p>
+
+                <div class="prompt-example">
+                    <p><strong>ინსტრუმენტის ტიპი:</strong> ტექსტის გენერატორი (მაგ. ChatGPT, Gemini)</p>
+                    <p><strong>GEO პრომპტი:</strong> <em>"შემომთავაზე 5 ბლოგპოსტის იდეა თემაზე 'ხელოვნური ინტელექტი მარკეტინგში დამწყებთათვის'. ფოკუსირდი პრაქტიკულ რჩევებზე."</em></p>
+                    <p><strong>ENG Prompt:</strong> <em>"Suggest 5 blog post ideas on the topic 'Artificial Intelligence in Marketing for Beginners'. Focus on practical tips."</em></p>
+                    <button onclick="copyToClipboard(this)">GEO პრომპტის კოპირება</button>
+                    <button onclick="copyToClipboard(this, 'ENG')">ENG Prompt Copy</button>
+                </div>
+                <div class="prompt-example">
+                    <p><strong>ინსტრუმენტის ტიპი:</strong> იდეების გენერატორი</p>
+                    <p><strong>GEO პრომპტი:</strong> <em>"მომაწოდე 3 ორიგინალური კონცეფცია YouTube ვიდეოსთვის, რომელიც ეხება AI-ს ეთიკურ გამოწვევებს."</em></p>
+                    <p><strong>ENG Prompt:</strong> <em>"Provide 3 original concepts for a YouTube video about the ethical challenges of AI."</em></p>
+                    <button onclick="copyToClipboard(this)">GEO პრომპტის კოპირება</button>
+                    <button onclick="copyToClipboard(this, 'ENG')">ENG Prompt Copy</button>
+                </div>
+                 <div class="prompt-example">
+                    <p><strong>ინსტრუმენტის ტიპი:</strong> პრეზენტაციის გენერატორი (მაგ. Gemini)</p>
+                    <p><strong>GEO პრომპტი:</strong> <em>"შექმენი HTML პრეზენტაცია თემაზე 'AI-ს გამოყენება განათლებაში'. პრეზენტაცია უნდა შეიცავდეს შესავალს, AI-ს უპირატესობებს სწავლების პროცესში, პრაქტიკულ მაგალითებს, გამოწვევებს და დასკვნას. თითოეული სექცია უნდა იყოს წარმოდგენილი ცალკე სლაიდზე. გამოიყენე სადა და პროფესიონალური დიზაინი."</em></p>
+                    <p><strong>ENG Prompt:</strong> <em>"Create an HTML presentation on the topic 'Using AI in Education'. The presentation should include an introduction, the advantages of AI in the learning process, practical examples, challenges, and a conclusion. Each section should be on a separate slide. Use a clean and professional design."</em></p>
+                    <button onclick="copyToClipboard(this)">GEO პრომპტის კოპირება</button>
+                    <button onclick="copyToClipboard(this, 'ENG')">ENG Prompt Copy</button>
+                </div>
+
+            </section>
+
+            <!-- Section 2: როგორ ცვლის AI კონტენტის შექმნას -->
+            <section id="ai-changes-content">
+                <h2>როგორ ცვლის AI კონტენტის შექმნას</h2>
+                <p>ხელოვნური ინტელექტი რევოლუციას ახდენს კონტენტის შექმნის ყველა ეტაპზე, იდეის ჩასახვიდან მის საბოლოო გავრცელებამდე. განვიხილოთ ძირითადი მიმართულებები:</p>
+                <ul>
+                    <li><strong>იდეების გენერირება და შთაგონება:</strong> AI ალგორითმებს შეუძლია გააანალიზონ დიდი მოცულობის მონაცემები, ტრენდები, მომხმარებელთა გამოხმაურებები და ამის საფუძველზე შემოგთავაზონ ახალი, აქტუალური იდეები კონტენტისთვის. მას შეუძლია დაგეხმაროთ ბრეინშტორმინგის პროცესში, შემოგთავაზოთ ალტერნატიული სათაურები, თემები ან თუნდაც სიუჟეტური ხაზები.</li>
+                    <li><strong>შინაარსის ავტომატური შექმნა:</strong> AI-ს შეუძლია შექმნას სხვადასხვა ტიპის კონტენტი: სტატიების პირველადი ვერსიები, სოციალური მედიის პოსტები, პროდუქტის აღწერილობები, სარეკლამო სლოგანები და ა.შ. ეს განსაკუთრებით სასარგებლოა, როდესაც საჭიროა დიდი მოცულობის კონტენტის სწრაფად მომზადება.</li>
+                    <li><strong>პერსონალიზაცია უპრეცედენტო მასშტაბით:</strong> AI ტექნოლოგიები საშუალებას იძლევა, შეიქმნას უაღრესად პერსონალიზებული კონტენტი თითოეული მომხმარებლის ან მომხმარებელთა სეგმენტისთვის. ეს ზრდის ჩართულობას, ლოიალობას და კონვერტაციის მაჩვენებლებს. AI-ს შეუძლია მოარგოს კონტენტის ტონი, სტილი და ფორმატი კონკრეტული აუდიტორიის უპირატესობებს.</li>
+                    <li><strong>კონტენტის ოპტიმიზაცია:</strong> AI ინსტრუმენტები გვეხმარება არსებული კონტენტის გაუმჯობესებაში SEO-სთვის (საძიებო სისტემების ოპტიმიზაცია), კითხვისუნარიანობის გასაუმჯობესებლად, გრამატიკული და სტილისტური შეცდომების აღმოსაფხვრელად და ვიზუალური მასალის ეფექტურობის გასაზრდელად.</li>
+                    <li><strong>მრავალენოვანი კონტენტის შექმნა და ადაპტაცია:</strong> AI-ზე დაფუძნებული თარგმნისა და ლოკალიზაციის ინსტრუმენტები მნიშვნელოვნად ამარტივებს კონტენტის სხვადასხვა ენაზე ადაპტაციას, რაც გლობალურ აუდიტორიაზე გასვლის საშუალებას იძლევა.</li>
+                </ul>
+
+                <div class="prompt-example">
+                    <p><strong>ინსტრუმენტის ტიპი:</strong> ტექსტის გენერატორი (მაგ. ChatGPT, Claude)</p>
+                    <p><strong>GEO პრომპტი:</strong> <em>"დამიწერე სოციალური მედიის პოსტის მოკლე მონახაზი, რომელიც ხაზს უსვამს AI-ს როლს კონტენტის პერსონალიზაციაში. ტონი უნდა იყოს ინფორმაციული და დამაინტრიგებელი."</em></p>
+                    <p><strong>ENG Prompt:</strong> <em>"Write a short social media post outline highlighting the role of AI in content personalization. The tone should be informative and intriguing."</em></p>
+                    <button onclick="copyToClipboard(this)">GEO პრომპტის კოპირება</button>
+                    <button onclick="copyToClipboard(this, 'ENG')">ENG Prompt Copy</button>
+                </div>
+                <div class="prompt-example">
+                    <p><strong>ინსტრუმენტის ტიპი:</strong> SEO ოპტიმიზაციის ხელსაწყო (AI 기반)</p>
+                    <p><strong>GEO პრომპტი:</strong> <em>"გააანალიზე ეს ბლოგპოსტი [ლინკი პოსტზე] და შემომთავაზე SEO საკვანძო სიტყვები და რეკომენდაციები მისი ხილვადობის გასაუმჯობესებლად."</em></p>
+                    <p><strong>ENG Prompt:</strong> <em>"Analyze this blog post [link to post] and suggest SEO keywords and recommendations to improve its visibility."</em></p>
+                    <button onclick="copyToClipboard(this)">GEO პრომპტის კოპირება</button>
+                    <button onclick="copyToClipboard(this, 'ENG')">ENG Prompt Copy</button>
+                </div>
+
+            </section>
+
+            <!-- Section 3: გამოყენების მაგალითები -->
+            <section id="use-cases">
+                <h2>გამოყენების მაგალითები ინდუსტრიების მიხედვით</h2>
+                <p>AI-ს გამოყენების პოტენციალი შემოქმედებით ინდუსტრიებში უსაზღვროა. ქვემოთ მოცემულია რამდენიმე კონკრეტული მაგალითი სხვადასხვა სფეროდან:</p>
+                <ul>
+                    <li><strong>მარკეტინგი და რეკლამა:</strong>
+                        <ul>
+                            <li>პერსონალიზებული სარეკლამო კამპანიების შექმნა.</li>
+                            <li>მომხმარებელთა სეგმენტაცია და ქცევის ანალიზი.</li>
+                            <li>ეფექტური სარეკლამო ტექსტებისა და ვიზუალების გენერირება.</li>
+                            <li>სოციალური მედიის კონტენტ-გეგმების ავტომატური შედგენა და პოსტების გენერირება.</li>
+                            <li>A/B ტესტირებისთვის სხვადასხვა ვარიანტების სწრაფი მომზადება.</li>
+                        </ul>
+                    </li>
+                    <li><strong>დიზაინი (გრაფიკული, ვებ, UX/UI):</strong>
+                        <ul>
+                            <li>ლოგოების, ილუსტრაციების, ბანერების და სხვა გრაფიკული ელემენტების სწრაფი პროტოტიპირება.</li>
+                            <li>ვებ-გვერდების დიზაინის ვარიანტების გენერირება.</li>
+                            <li>ფერთა პალიტრებისა და შრიფტების ავტომატური შერჩევა.</li>
+                            <li>მომხმარებლის გამოცდილების (UX) ანალიზი და გაუმჯობესების რეკომენდაციები.</li>
+                        </ul>
+                    </li>
+                    <li><strong>მედია და ჟურნალისტიკა:</strong>
+                        <ul>
+                            <li>ახალი ამბების ავტომატური გენერირება მონაცემთა ბაზებზე დაყრდნობით (მაგ. სპორტული შედეგები, ფინანსური ანგარიშები).</li>
+                            <li>სტატიების თარგმნა და ადაპტაცია სხვადასხვა პლატფორმისთვის.</li>
+                            <li>ვიდეო კონტენტის ავტომატური სუბტიტრირება და მონტაჟი.</li>
+                            <li>ფეიკ ნიუსების და დეზინფორმაციის გამოვლენა.</li>
+                        </ul>
+                    </li>
+                    <li><strong>ფოტოგრაფია და ვიდეოგრაფია:</strong>
+                        <ul>
+                            <li>ფოტოების ხარისხის გაუმჯობესება, რეტუშირება და სტილიზაცია.</li>
+                            <li>ვიდეო კადრების სტაბილიზაცია და ფერების კორექცია.</li>
+                            <li>უნიკალური ვიზუალური ეფექტების შექმნა.</li>
+                            <li>ძველი ან დაზიანებული ფოტო/ვიდეო მასალის აღდგენა.</li>
+                        </ul>
+                    </li>
+                    <li><strong>ლიტერატურა და სცენარისტობა:</strong>
+                        <ul>
+                            <li>სიუჟეტური იდეების გენერირება, პერსონაჟების განვითარება.</li>
+                            <li>დიალოგების და სცენების პირველადი ვერსიების შექმნა.</li>
+                            <li>ტექსტის სტილის ანალიზი და გაუმჯობესების რეკომენდაციები.</li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <div class="prompt-example">
+                    <p><strong>ინსტრუმენტის ტიპი:</strong> სურათების გენერატორი (მაგ. Midjourney, DALL-E)</p>
+                    <p><strong>GEO პრომპტი:</strong> <em>"შექმენი ფუტურისტული ქალაქის პეიზაჟის სურათი, სადაც დომინირებს ნეონის ფერები და მფრინავი მანქანები, კიბერპანკის სტილში."</em></p>
+                    <button onclick="copyToClipboard(this)">GEO პრომპტის კოპირება</button>
+                </div>
+                <div class="prompt-example">
+                    <p><strong>ინსტრუმენტის ტიპი:</strong> Text-to-Speech (TTS)</p>
+                    <p><strong>GEO პრომპტი:</strong> <em>"გაახმოვანე ეს ტექსტი: 'კეთილი იყოს თქვენი მობრძანება ჩვენს პოდკასტზე, სადაც დღეს ვისაუბრებთ ხელოვნური ინტელექტის მომავალზე.' გამოიყენე მეგობრული და ენერგიული მამაკაცის ხმა."</em></p>
+                    <button onclick="copyToClipboard(this)">GEO პრომპტის კოპირება</button>
+                </div>
+                 <div class="prompt-example">
+                    <p><strong>ინსტრუმენტის ტიპი:</strong> სურათების გენერატორი (მაგ. DALL-E, Stable Diffusion)</p>
+                    <p><strong>GEO პრომპტი:</strong> <em>"შექმენი ფუტურისტული ქალაქის პეიზაჟის სურათი, სადაც დომინირებს ნეონის ფერები და მფრინავი მანქანები, კიბერპანკის სტილში."</em></p>
+                    <p><strong>ENG Prompt:</strong> <em>"Create an image of a futuristic cityscape dominated by neon colors and flying cars, in a cyberpunk style."</em></p>
+                    <button onclick="copyToClipboard(this)">GEO პრომპტის კოპირება</button>
+                    <button onclick="copyToClipboard(this, 'ENG')">ENG Prompt Copy</button>
+                </div>
+                <div class="prompt-example">
+                    <p><strong>ინსტრუმენტის ტიპი:</strong> სურათების გენერატორი (მაგ. DALL-E, Recraft.ai)</p>
+                    <p><strong>GEO პრომპტი:</strong> <em>"შექმენი 3D ილუსტრაცია, სადაც ასახულია ტვინი, რომელიც დაკავშირებულია ციფრულ ქსელებთან. ფონზე გამოიყენე კოდის სიმბოლოები. სტილი: ტექნოლოგიური, თანამედროვე."</em></p>
+                    <p><strong>ENG Prompt:</strong> <em>"Create a 3D illustration of a brain connected to digital networks. Use code symbols in the background. Style: technological, modern."</em></p>
+                    <button onclick="copyToClipboard(this)">GEO პრომპტის კოპირება</button>
+                    <button onclick="copyToClipboard(this, 'ENG')">ENG Prompt Copy</button>
+                </div>
+
+            </section>
+
+            <!-- Section 4: ძირითადი AI ინსტრუმენტების ტიპები -->
+            <section id="ai-tool-types">
+                <h2>ძირითადი AI ინსტრუმენტების ტიპები</h2>
+                <p>დღესდღეობით არსებობს AI ინსტრუმენტების მრავალფეროვანი სპექტრი, რომლებიც კონტენტ კრეატორებს სხვადასხვა ამოცანების გადაჭრაში ეხმარება. მოდით, განვიხილოთ ძირითადი კატეგორიები:</p>
+                <ul>
+                    <li><strong>ტექსტზე დაფუძნებული AI ინსტრუმენტები (LLMs - Large Language Models):</strong>
+                        <ul>
+                            <li><strong>გენერატორები:</strong> ქმნიან ორიგინალურ ტექსტებს (სტატიები, ბლოგპოსტები, სარეკლამო ტექსტები, პოეზია, კოდი და ა.შ.) მოცემული მითითებების (პრომპტების) საფუძველზე. მაგალითები: GPT-სერია (ChatGPT), Claude, Google Gemini.</li>
+                            <li><strong>რედაქტორები და კორექტორები:</strong> აუმჯობესებენ არსებულ ტექსტებს, ასწორებენ გრამატიკულ და სტილისტურ შეცდომებს, გვთავაზობენ სინონიმებსა და უკეთეს ფორმულირებებს.</li>
+                            <li><strong>მთარგმნელები:</strong> ახორციელებენ ტექსტის ავტომატურ თარგმნას სხვადასხვა ენაზე მაღალი სიზუსტით.</li>
+                            <li><strong>შეჯამების ინსტრუმენტები:</strong> ქმნიან ვრცელი ტექსტების მოკლე და ინფორმაციულ ვერსიებს.</li>
+                        </ul>
+                    </li>
+                    <li><strong>გამოსახულების (ფოტო) გენერატორები და რედაქტორები:</strong>
+                        <ul>
+                            <li><strong>Text-to-Image გენერატორები:</strong> ტექსტური აღწერის (პრომპტის) საფუძველზე ქმნიან უნიკალურ გამოსახულებებს. მაგალითები: DALL-E, Stable Diffusion, Recraft.ai.</li>
+                            <li><strong>Image-to-Image რედაქტორები:</strong> ცვლიან არსებულ გამოსახულებებს სხვა სტილში, ამატებენ ან შლიან ობიექტებს, აუმჯობესებენ ხარისხს.</li>
+                            <li><strong>ფოტო რეტუშირებისა და გაუმჯობესების AI:</strong> ავტომატურად აშორებენ დეფექტებს, აუმჯობესებენ ფერებს, სიმკვეთრეს და ა.შ.</li>
+                        </ul>
+                    </li>
+                    <li><strong>ვიდეო გენერატორები და რედაქტორები:</strong>
+                        <ul>
+                            <li><strong>Text-to-Video / Image-to-Video:</strong> ტექსტური აღწერებიდან ან სტატიკური გამოსახულებებიდან ქმნიან ვიდეო კლიპებს. მაგალითები: Runway, Pika, Sora (OpenAI).</li>
+                            <li><strong>ავტომატური მონტაჟის ხელსაწყოები:</strong> ეხმარებიან ვიდეო მასალის დაჭრაში, კადრების გადაწყობაში, ეფექტების დამატებაში.</li>
+                            <li><strong>სუბტიტრებისა და გახმოვანების AI:</strong> ავტომატურად ქმნიან სუბტიტრებს და ახმოვანებენ ვიდეოებს სხვადასხვა ენაზე.</li>
+                        </ul>
+                    </li>
+                    <li><strong>აუდიო ინსტრუმენტები:</strong>
+                        <ul>
+                            <li><strong>Text-to-Speech (TTS):</strong> ტექსტს გარდაქმნიან ბუნებრივად ჟღერად მეტყველებად.</li>
+                            <li><strong>Speech-to-Text (STT):</strong> აუდიო ჩანაწერს გარდაქმნიან ტექსტურ ფორმატში.</li>
+                            <li><strong>მუსიკის გენერატორები:</strong> ქმნიან ორიგინალურ მუსიკალურ კომპოზიციებს სხვადასხვა ჟანრსა და განწყობაში.</li>
+                            <li><strong>ხმის კლონირება და მოდიფიკაცია:</strong> საშუალებას იძლევა, შეიქმნას კონკრეტული ადამიანის ხმის მსგავსი აუდიო ან შეიცვალოს არსებული ხმის ტემბრი.</li>
+                            <li><strong>აუდიო რედაქტირების AI:</strong> ავტომატურად აშორებენ ხმაურს, აუმჯობესებენ ხმის ხარისხს.</li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <div class="prompt-example">
+                    <p><strong>ინსტრუმენტის ტიპი:</strong> Text-to-Image (მაგ. Stable Diffusion, Recraft.ai)</p>
+                    <p><strong>GEO პრომპტი:</strong> <em>"შექმენი ლოგო ყავის მაღაზიისთვის სახელად 'დილის სურნელი'. ლოგო უნდა იყოს მინიმალისტური, გამოსახავდეს ყავის ჭიქას და მზის სხივს. ფერები: თბილი ყავისფერი და ოქროსფერი."</em></p>
+                    <p><strong>ENG Prompt:</strong> <em>"Create a logo for a coffee shop called 'Morning Aroma'. The logo should be minimalist, featuring a coffee cup and a sunbeam. Colors: warm brown and gold."</em></p>
+                    <button onclick="copyToClipboard(this)">GEO პრომპტის კოპირება</button>
+                    <button onclick="copyToClipboard(this, 'ENG')">ENG Prompt Copy</button>
+                </div>
+                 <div class="prompt-example">
+                    <p><strong>ინსტრუმენტის ტიპი:</strong> ვიდეო გენერატორი (მაგ. Runway, Pika)</p>
+                    <p><strong>GEO პრომპტი:</strong> <em>"გააკეთე მოკლე (10 წამიანი) ვიდეო კლიპი ამ ტექსტზე დაყრდნობით: 'ტყეში მოსეირნე ირემი მზის ჩასვლისას'. სტილი: კინემატოგრაფიული, მშვიდი მუსიკით."</em></p>
+                    <p><strong>ENG Prompt:</strong> <em>"Create a short (10-second) video clip based on this text: 'A deer walking in the forest at sunset'. Style: cinematic, with calm music."</em></p>
+                    <button onclick="copyToClipboard(this)">GEO პრომპტის კოპირება</button>
+                    <button onclick="copyToClipboard(this, 'ENG')">ENG Prompt Copy</button>
+                </div>
+                <div class="prompt-example">
+                    <p><strong>ინსტრუმენტის ტიპი:</strong> მუსიკის გენერატორი (მაგ. Soundraw, AIVA)</p>
+                    <p><strong>GEO პრომპტი:</strong> <em>"შექმენი 1 წუთიანი ფონური მუსიკა სამოტივაციო ვიდეოსთვის. განწყობა: ამაღლებული, ინსპირაციული. ტემპი: საშუალო."</em></p>
+                    <p><strong>ENG Prompt:</strong> <em>"Create 1 minute of background music for a motivational video. Mood: uplifting, inspirational. Tempo: medium."</em></p>
+                    <button onclick="copyToClipboard(this)">GEO პრომპტის კოპირება</button>
+                    <button onclick="copyToClipboard(this, 'ENG')">ENG Prompt Copy</button>
+                </div>
+
+            </section>
+
+            <!-- Section 5: AI-ს შესაძლებლობები და შეზღუდვები -->
+            <section id="capabilities-limitations">
+                <h2>AI-ს შესაძლებლობები და შეზღუდვები</h2>
+                <p>ხელოვნური ინტელექტი მძლავრი ინსტრუმენტია, თუმცა მნიშვნელოვანია მისი რეალური შესაძლებლობებისა და არსებული შეზღუდვების გააზრება, რათა ეფექტურად გამოვიყენოთ იგი და გვქონდეს რეალისტური მოლოდინები.</p>
+
+                <h3>რისი გაკეთება შეუძლია AI-ს (შესაძლებლობები):</h3>
+                <ul>
+                    <li><strong>მონაცემთა დიდი მოცულობის დამუშავება:</strong> AI-ს შეუძლია წამებში გააანალიზოს ტერაბაიტობით ინფორმაცია, რასაც ადამიანი ვერ შეძლებს.</li>
+                    <li><strong>პატერნების და ტენდენციების გამოვლენა:</strong> მას შეუძლია აღმოაჩინოს ფარული კავშირები და ტენდენციები მონაცემებში, რაც სასარგებლოა პროგნოზირებისთვის და სტრატეგიული გადაწყვეტილებების მისაღებად.</li>
+                    <li><strong>კონტენტის სწრაფი გენერირება:</strong> AI-ს შეუძლია მოკლე დროში შექმნას ტექსტების, სურათების, ვიდეოების და აუდიოს პირველადი ვერსიები.</li>
+                    <li><strong>რუტინული და განმეორებითი ამოცანების ავტომატიზაცია:</strong> ამით თავისუფლდება ადამიანური რესურსი უფრო კომპლექსური და შემოქმედებითი სამუშაოსთვის.</li>
+                    <li><strong>პერსონალიზაცია მასშტაბურად:</strong> AI-ს შეუძლია მილიონობით მომხმარებლისთვის ინდივიდუალურად მორგებული კონტენტის შეთავაზება.</li>
+                    <li><strong>24/7 მუშაობის შესაძლებლობა:</strong> AI სისტემებს არ სჭირდებათ დასვენება და შეუძლიათ უწყვეტად იმუშაონ.</li>
+                    <li><strong>სწავლისა და ადაპტაციის უნარი:</strong> თანამედროვე AI მოდელებს შეუძლიათ ისწავლონ ახალ მონაცემებზე და დროთა განმავლობაში გააუმჯობესონ თავიანთი მუშაობის ხარისხი.</li>
+                </ul>
+
+                <h3>რისი გაკეთება არ შეუძლია (ან უჭირს) AI-ს (შეზღუდვები):</h3>
+                <ul>
+                    <li><strong>ჭეშმარიტი ცნობიერება და ემოციები:</strong> AI არ ფლობს ადამიანურ ცნობიერებას, გრძნობებს, ინტუიციას ან პირად გამოცდილებას. მისი "გადაწყვეტილებები" დაფუძნებულია ალგორითმებსა და მონაცემებზე.</li>
+                    <li><strong>კონტექსტის ღრმა გააზრება და ნიუანსები:</strong> მიუხედავად პროგრესისა, AI-ს ზოგჯერ უჭირს რთული კონტექსტის, ირონიის, სარკაზმის ან კულტურული ნიუანსების სრულყოფილად გაგება.</li>
+                    <li><strong>აბსოლუტური ორიგინალურობა და ინოვაცია:</strong> AI ქმნის კონტენტს იმ მონაცემებზე დაყრდნობით, რაზეც ის გაწვრთნეს. მას შეუძლია არსებული ელემენტების კომბინირება ახლებურად, მაგრამ რადიკალურად ახალი, ადამიანური გენიის მსგავსი იდეების გენერირება ჯერ კიდევ გამოწვევაა.</li>
+                    <li><strong>ეთიკური და მორალური მსჯელობა:</strong> AI-ს არ გააჩნია საკუთარი მორალური კომპასი. ეთიკური გადაწყვეტილებები კვლავ ადამიანის პასუხისმგებლობაა. AI-მ შესაძლოა გაიმეოროს მონაცემებში არსებული მიკერძოებები.</li>
+                    <li><strong>"ჰალუცინაციები" და ფაქტობრივი უზუსტობები:</strong> ზოგჯერ AI-მ შესაძლოა დააგენერიროს არასწორი, შეცდომაში შემყვანი ან ალოგიკური ინფორმაცია, რომელიც დამაჯერებლად გამოიყურება. აუცილებელია ფაქტების გადამოწმება.</li>
+                    <li><strong>ადამიანური შეხების სრული ჩანაცვლება:</strong> ბევრ სფეროში, განსაკუთრებით იქ, სადაც მნიშვნელოვანია ემპათია, კრიტიკული აზროვნება და კომპლექსური პრობლემების გადაჭრა, AI უფრო მეტად დამხმარე ინსტრუმენტია, ვიდრე შემცვლელი.</li>
+                    <li><strong>საავტორო უფლებები და ინტელექტუალური საკუთრება:</strong> AI-ით გენერირებული კონტენტის საავტორო უფლებების საკითხი ჯერ კიდევ აქტიური განხილვის საგანია და სამართლებრივი რეგულაციები ვითარდება.</li>
+                </ul>
+
+                <div class="prompt-example">
+                    <p><strong>ინსტრუმენტის ტიპი:</strong> ტექსტის შემაჯამებელი (მაგ. QuillBot, SummarizeBot)</p>
+                    <p><strong>GEO პრომპტი:</strong> <em>"შეაჯამე ეს სამეცნიერო სტატია [ლინკი სტატიაზე] 300 სიტყვაში, გამოყავი ძირითადი მიგნებები და მეთოდოლოგია."</em></p>
+                    <p><strong>ENG Prompt:</strong> <em>"Summarize this scientific article [link to article] in 300 words, highlighting the main findings and methodology."</em></p>
+                    <button onclick="copyToClipboard(this)">GEO პრომპტის კოპირება</button>
+                    <button onclick="copyToClipboard(this, 'ENG')">ENG Prompt Copy</button>
+                </div>
+                 <div class="prompt-example">
+                    <p><strong>ინსტრუმენტის ტიპი:</strong> ფაქტების გადამოწმების AI (კონცეპტუალური)</p>
+                    <p><strong>GEO პრომპტი:</strong> <em>"გადაამოწმე ამ ტექსტში მოყვანილი სტატისტიკური მონაცემების სიზუსტე: 'კვლევების თანახმად, X კომპანიის ბაზრის წილი 2023 წელს 60%-ს შეადგენდა.' მიუთითე წყაროები."</em></p>
+                    <p><strong>ENG Prompt:</strong> <em>"Verify the accuracy of the statistical data cited in this text: 'According to studies, Company X's market share in 2023 was 60%.' Cite sources."</em></p>
+                    <button onclick="copyToClipboard(this)">GEO პრომპტის კოპირება</button>
+                    <button onclick="copyToClipboard(this, 'ENG')">ENG Prompt Copy</button>
+                </div>
+                <div class="prompt-example">
+                    <p><strong>ინსტრუმენტის ტიპი:</strong> კოდის გენერატორი (მაგ. GitHub Copilot, Gemini)</p>
+                    <p><strong>GEO პრომპტი:</strong> <em>"დამიწერე Python-ის ფუნქცია, რომელიც იღებს სიტყვების სიას და აბრუნებს ყველაზე ხშირად გამეორებულ სიტყვას."</em></p>
+                    <p><strong>ENG Prompt:</strong> <em>"Write a Python function that takes a list of strings and returns the most frequently occurring string."</em></p>
+                    <button onclick="copyToClipboard(this)">GEO პრომპტის კოპირება</button>
+                    <button onclick="copyToClipboard(this, 'ENG')">ENG Prompt Copy</button>
+                </div>
+
+            </section>
+
+            <!-- Section 6: პრაქტიკული დავალება -->
+            <section id="practical-task">
+                <h2>პრაქტიკული დავალება</h2>
+                <p>ამ ლექციის თეორიული ნაწილის შესწავლის შემდეგ, დროა, პრაქტიკულად გამოვცადოთ ზოგიერთი განხილული კონცეფცია. პრაქტიკული დავალების მიზანია, დაგეხმაროთ ხელოვნური ინტელექტის ინსტრუმენტებთან პირველი ნაბიჯების გადადგმაში და მათი პოტენციალის უკეთ გააზრებაში.</p>
+                <p><strong>დავალების დეტალები:</strong></p>
+                <ul>
+                    <li>დავალების კონკრეტული პირობები და გამოყენებული ინსტრუმენტების ჩამონათვალი ლექციის ბოლოს იქნება წარმოდგენილი.</li>
+                    <li>თქვენ მოგიწევთ მცირე კვლევის ჩატარება ან კონკრეტული ტიპის კონტენტის (მაგალითად, ტექსტის ან ვიზუალის) გენერირება AI ხელსაწყოს გამოყენებით.</li>
+                    <li>ყურადღება მიაქციეთ პრომპტის (მითითების) სწორად ფორმულირებას, რათა მიიღოთ სასურველი შედეგი.</li>
+                    <li>მოემზადეთ თქვენი შედეგებისა და გამოცდილების გასაზიარებლად შემდეგ შეხვედრაზე.</li>
+                </ul>
+                <p><em>ეს დავალება არ ფასდება, მისი მთავარი მიზანია სწავლის პროცესის ხელშეწყობა და პრაქტიკული უნარების განვითარება. გისურვებთ წარმატებებს!</em></p>
+            </section>
+
+            <!-- NEW Section 7: სასარგებლო რესურსები -->
+            <section id="resources">
+                <h2>სასარგებლო რესურსები</h2>
+                <p>აქ თავმოყრილია რესურსები, რომლებიც დაგეხმარებათ ხელოვნური ინტელექტის სამყაროში უფრო ღრმად ჩასვლაში, ახალი ინსტრუმენტების აღმოჩენასა და უნარების განვითარებაში:</p>
+                
+                <h3>AI ინსტრუმენტების კატალოგები და მიმოხილვები:</h3>
+                <ul>
+                    <li><strong>Futurepedia.io:</strong> ერთ-ერთი უდიდესი AI ინსტრუმენტების კატალოგი, რომელიც მუდმივად ახლდება. <a href="https://www.futurepedia.io/" target="_blank">Futurepedia.io</a></li>
+                    <li><strong>There's An AI For That (TAAFT):</strong> ვრცელი ბაზა სხვადასხვა კატეგორიის AI ხელსაწყოებით. <a href="https://theresanaiforthat.com/" target="_blank">theresanaiforthat.com</a></li>
+                    <li><strong>G2 - AI Software:</strong> მომხმარებლების შეფასებები და მიმოხილვები AI პროგრამულ უზრუნველყოფაზე. <a href="https://www.g2.com/categories/artificial-intelligence-software" target="_blank">G2.com</a></li>
+                </ul>
+
+                <h3>პოპულარული AI ინსტრუმენტები (მაგალითები):</h3>
+                <ul>
+                    <li><strong>ტექსტის გენერაცია:</strong>
+                        <ul>
+                            <li><strong>ChatGPT (OpenAI):</strong> <a href="https://chat.openai.com/" target="_blank">chat.openai.com</a></li>
+                            <li><strong>Google Gemini:</strong> <a href="https://gemini.google.com/" target="_blank">gemini.google.com</a></li>
+                            <li><strong>Claude (Anthropic):</strong> <a href="https://claude.ai/" target="_blank">claude.ai</a></li>
+                            <li><strong>Jasper:</strong> <a href="https://www.jasper.ai/" target="_blank">jasper.ai</a> (ფოკუსირებულია მარკეტინგულ კონტენტზე)</li>
+                        </ul>
+                    </li>
+                    <li><strong>გამოსახულების გენერაცია:</strong>
+                        <ul>
+                            <li><strong>DALL-E (OpenAI):</strong> <a href="https://openai.com/dall-e-3" target="_blank">openai.com/dall-e-3</a> (ხელმისაწვდომია ChatGPT Plus-ში და API-ით)</li>
+                            <li><strong>Stable Diffusion:</strong> <a href="https://stablediffusion.com/" target="_blank">stablediffusion.com</a> (ღია კოდის მოდელი, მრავალი ინტერფეისით)</li>
+                             <li><strong>Recraft.ai:</strong> <a href="https://www.recraft.ai/" target="_blank">recraft.ai</a> (ფოკუსირებულია ვექტორულ გრაფიკაზე და ილუსტრაციებზე)</li>
+                            <li><strong>Canva AI Image Generator:</strong> <a href="https://www.canva.com/ai-image-generator/" target="_blank">canva.com/ai-image-generator</a> (ინტეგრირებულია Canva-ს პლატფორმაში)</li>
+                        </ul>
+                    </li>
+                    <li><strong>ვიდეო გენერაცია და რედაქტირება:</strong>
+                        <ul>
+                            <li><strong>Runway:</strong> <a href="https://runwayml.com/" target="_blank">runwayml.com</a></li>
+                            <li><strong>Pika:</strong> <a href="https://pika.art/" target="_blank">pika.art</a></li>
+                            <li><strong>Synthesia:</strong> <a href="https://www.synthesia.io/" target="_blank">synthesia.io</a> (AI ავატარები ვიდეოსთვის)</li>
+                            <li><strong>Descript:</strong> <a href="https://www.descript.com/" target="_blank">descript.com</a> (აუდიო/ვიდეო რედაქტირება ტექსტზე დაყრდნობით)</li>
+                        </ul>
+                    </li>
+                    <li><strong>აუდიო და მუსიკა:</strong>
+                        <ul>
+                            <li><strong>ElevenLabs:</strong> <a href="https://elevenlabs.io/" target="_blank">elevenlabs.io</a> (Text-to-Speech და ხმის კლონირება)</li>
+                            <li><strong>Soundraw:</strong> <a href="https://soundraw.io/" target="_blank">soundraw.io</a> (AI მუსიკის გენერატორი)</li>
+                            <li><strong>AIVA:</strong> <a href="https://www.aiva.ai/" target="_blank">aiva.ai</a> (ემოციური საუნდტრეკების შექმნა)</li>
+                            <li><strong>Adobe Podcast (Enhance Speech):</strong> <a href="https://podcast.adobe.com/enhance" target="_blank">podcast.adobe.com/enhance</a> (აუდიოს ხარისხის გაუმჯობესება)</li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <h3>სასწავლო მასალები და სიახლეები:</h3>
+                <ul>
+                    <li><strong>Google AI Essentials:</strong> უფასო კურსი Google-სგან AI-ს საფუძვლებზე. <a href="https://grow.google/intl/ALL_ALL/ai-essentials/" target="_blank">Google AI Essentials</a></li>
+                    <li><strong>Coursera / edX:</strong> მრავალი კურსი AI-სა და მანქანური სწავლების შესახებ წამყვანი უნივერსიტეტებისგან. (<a href="https://www.coursera.org/" target="_blank">Coursera</a>, <a href="https://www.edx.org/" target="_blank">edX</a>)</li>
+                    <li><strong>TechCrunch AI:</strong> სიახლეები AI ინდუსტრიიდან. <a href="https://techcrunch.com/category/artificial-intelligence/" target="_blank">TechCrunch AI</a></li>
+                    <li><strong>MIT Technology Review - AI:</strong> ანალიტიკური სტატიები და სიახლეები. <a href="https://www.technologyreview.com/artificial-intelligence/" target="_blank">MIT Technology Review AI</a></li>
+                     <li><strong>AI Explained (YouTube არხი):</strong> ვიდეოები AI-ს სიახლეებსა და განვითარებებზე. <a href="https://www.youtube.com/@AIExplained" target="_blank">AI Explained</a></li>
+                </ul>
+                <p>გახსოვდეთ, AI სფერო ძალიან დინამიურია. ახალი ინსტრუმენტები და შესაძლებლობები თითქმის ყოველდღიურად ჩნდება. იყავით ცნობისმოყვარე და განაგრძეთ კვლევა!</p>
+            </section>
+
+        </main>
+
+        <!-- Footer -->
+        <footer>
+            <!-- The provided logo is dark, so it might not look great on a dark footer without inversion.
+                 If you have a light version of the logo, it would be better here.
+                 Alternatively, you can use the CSS filter: brightness(0) invert(1); on the img tag,
+                 but it's commented out by default.
+            -->
+            <img src="Logo/logo1.svg" alt="CommSchool Logo Small">
+            <p><strong>CommSchool</strong> | AI შემოქმედებით ინდუსტრიაში</p>
+            <p>კურსის შესახებ დამატებითი ინფორმაციისთვის ეწვიეთ <a href="https://commschool.ge" target="_blank">commschool.ge</a></p>
+            <p>© 2024-2025 CommSchool. ყველა უფლება დაცულია.</p>
+        </footer>
+    </div>
+
+<script>
+    function copyToClipboard(buttonElement, lang) {
+        let promptText;
+        if (lang === 'ENG') {
+            promptText = buttonElement.parentElement.querySelector('p:nth-of-type(3) em').innerText;
+        } else {
+            promptText = buttonElement.parentElement.querySelector('p:nth-of-type(2) em').innerText;
+        }
+        
+        navigator.clipboard.writeText(promptText).then(() => {
+            const originalText = buttonElement.innerText;
+            buttonElement.innerText = 'დაკოპირებულია!';
+            setTimeout(() => {
+                buttonElement.innerText = originalText;
+            }, 2000);
+        }).catch(err => {
+            console.error('Failed to copy text: ', err);
+            alert('კოპირება ვერ მოხერხდა. გთხოვთ, სცადოთ ხელით კოპირება.');
+        });
+    }
+
+    // Scroll-spy for navigation
+    document.addEventListener('DOMContentLoaded', () => {
+        const sections = document.querySelectorAll('main section[id]');
+        const navLinks = document.querySelectorAll('.side-nav a');
+        // const navHeight = document.querySelector('.side-nav').offsetHeight; // Not directly needed for offset calculation here
+        const pageHeaderElement = document.querySelector('.page-header');
+        const headerHeight = pageHeaderElement ? pageHeaderElement.offsetHeight : 0;
+
+        function changeLinkState() {
+            let index = sections.length;
+
+            // Iterate downwards from the bottom section
+            while(--index >= 0 && window.scrollY + headerHeight + 70 < sections[index].offsetTop) {}
+            
+            navLinks.forEach((link) => link.classList.remove('active'));
+            
+            // If a section is found, activate its link
+            // If scrolled to the very top before any section, index might be -1
+            if (index >= 0 && navLinks[index]) { // Check if navLinks[index] exists
+                 navLinks[index].classList.add('active');
+            } else if (index < 0 && navLinks.length > 0 && navLinks[0]) { // Check if navLinks[0] exists
+                // Optional: If scrolled above the first section, make the first link active or none
+                // For now, let's make the first one active if no other section is detected
+                // navLinks[0].classList.add('active');
+            }
+        }
+
+        if (sections.length > 0 && navLinks.length > 0) {
+            changeLinkState(); // Set initial active link on page load
+            window.addEventListener('scroll', changeLinkState);
+        }
+    });
+
+</script>
+
+</body></html>
