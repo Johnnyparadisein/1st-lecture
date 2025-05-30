@@ -314,6 +314,37 @@
         .prompt-example button:hover {
             background-color: #009a00; /* Darker green on hover */
         }
+
+        .prompt-example em.prompt-text-geo,
+        .prompt-example em.prompt-text-eng {
+            display: block; /* Make each prompt appear on its own line */
+            margin-bottom: 5px; /* Add some space below each prompt line */
+        }
+
+        .prompt-example .prompt-label {
+            font-weight: bold;
+            color: #333;
+        }
+        .prompt-example .prompt-good {
+            color: #008100; /* Darker green for good prompts */
+        }
+        .prompt-example .prompt-bad {
+            color: #c00000; /* Red for bad prompts */
+        }
+
+        .prompt-example .tool-link {
+            display: block;
+            font-size: 0.85em;
+            margin-top: 12px;
+            color: #555;
+        }
+        .prompt-example .tool-link a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        .prompt-example .tool-link a:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
@@ -349,25 +380,34 @@
                 <p>ამ ლექციაზე დეტალურად განვიხილავთ, თუ როგორ შეგიძლიათ გამოიყენოთ AI თქვენი შემოქმედებითი პროცესების გასაუმჯობესებლად და ახალი სიმაღლეების მისაღწევად.</p>
 
                 <div class="prompt-example">
-                    <p><strong>ინსტრუმენტის ტიპი:</strong> ტექსტის გენერატორი (მაგ. ChatGPT, Gemini)</p>
-                    <p><strong>GEO პრომპტი:</strong> <em>"შემომთავაზე 5 ბლოგპოსტის იდეა თემაზე 'ხელოვნური ინტელექტი მარკეტინგში დამწყებთათვის'. ფოკუსირდი პრაქტიკულ რჩევებზე."</em></p>
-                    <p><strong>ENG Prompt:</strong> <em>"Suggest 5 blog post ideas on the topic 'Artificial Intelligence in Marketing for Beginners'. Focus on practical tips."</em></p>
-                    <button onclick="copyToClipboard(this)">GEO პრომპტის კოპირება</button>
+                    <p><strong>ინსტრუმენტი:</strong> ტექსტის გენერატორი (მაგ: Gemini ან ChatGPT <a href="https://poe.com" target="_blank">Poe.com</a>-ზე)</p>
+                    <p><span class="prompt-label prompt-good">კარგი GEO პრომპტი:</span> <em class="prompt-text-geo">"შემომთავაზე 5 ბლოგპოსტის იდეა თემაზე 'ხელოვნური ინტელექტი მარკეტინგში დამწყებთათვის'. ფოკუსირდი პრაქტიკულ რჩევებზე, თითოეული იდეა უნდა შეიცავდეს მოკლე აღწერას და პოტენციურ ქვესათაურებს."</em></p>
+                    <p><span class="prompt-label prompt-good">Good ENG Prompt:</span> <em class="prompt-text-eng">"Suggest 5 blog post ideas on the topic 'Artificial Intelligence in Marketing for Beginners'. Focus on practical tips, each idea should include a brief description and potential subheadings."</em></p>
+                    <p><span class="prompt-label prompt-bad">ცუდი GEO პრომპტი:</span> <em class="prompt-text-geo">"მარკეტინგის იდეები AI-თ."</em></p>
+                    <p><span class="prompt-label prompt-bad">Bad ENG Prompt:</span> <em class="prompt-text-eng">"Marketing ideas with AI."</em></p>
+                    <button onclick="copyToClipboard(this, 'GEO')">GEO პრომპტის კოპირება</button>
                     <button onclick="copyToClipboard(this, 'ENG')">ENG Prompt Copy</button>
+                    <p class="tool-link">სცადე <a href="https://poe.com" target="_blank">Poe.com</a>-ზე</p>
                 </div>
                 <div class="prompt-example">
-                    <p><strong>ინსტრუმენტის ტიპი:</strong> იდეების გენერატორი</p>
-                    <p><strong>GEO პრომპტი:</strong> <em>"მომაწოდე 3 ორიგინალური კონცეფცია YouTube ვიდეოსთვის, რომელიც ეხება AI-ს ეთიკურ გამოწვევებს."</em></p>
-                    <p><strong>ENG Prompt:</strong> <em>"Provide 3 original concepts for a YouTube video about the ethical challenges of AI."</em></p>
-                    <button onclick="copyToClipboard(this)">GEO პრომპტის კოპირება</button>
+                    <p><strong>ინსტრუმენტი:</strong> იდეების გენერატორი (მაგ: Gemini ან ChatGPT <a href="https://poe.com" target="_blank">Poe.com</a>-ზე)</p>
+                    <p><span class="prompt-label prompt-good">კარგი GEO პრომპტი:</span> <em class="prompt-text-geo">"მომაწოდე 3 ორიგინალური და პროვოკაციული კონცეფცია YouTube ვიდეოსთვის, რომელიც ეხება AI-ს ეთიკურ გამოწვევებს ხელოვნებაში. თითოეული კონცეფცია უნდა მოიცავდეს სამიზნე აუდიტორიას და პოტენციურ ვიზუალურ სტილს."</em></p>
+                    <p><span class="prompt-label prompt-good">Good ENG Prompt:</span> <em class="prompt-text-eng">"Provide 3 original and provocative concepts for a YouTube video about the ethical challenges of AI in art. Each concept should include the target audience and potential visual style."</em></p>
+                    <p><span class="prompt-label prompt-bad">ცუდი GEO პრომპტი:</span> <em class="prompt-text-geo">"AI ეთიკა ვიდეო."</em></p>
+                    <p><span class="prompt-label prompt-bad">Bad ENG Prompt:</span> <em class="prompt-text-eng">"AI ethics video."</em></p>
+                    <button onclick="copyToClipboard(this, 'GEO')">GEO პრომპტის კოპირება</button>
                     <button onclick="copyToClipboard(this, 'ENG')">ENG Prompt Copy</button>
+                    <p class="tool-link">სცადე <a href="https://poe.com" target="_blank">Poe.com</a>-ზე</p>
                 </div>
                  <div class="prompt-example">
-                    <p><strong>ინსტრუმენტის ტიპი:</strong> პრეზენტაციის გენერატორი (მაგ. Gemini)</p>
-                    <p><strong>GEO პრომპტი:</strong> <em>"შექმენი HTML პრეზენტაცია თემაზე 'AI-ს გამოყენება განათლებაში'. პრეზენტაცია უნდა შეიცავდეს შესავალს, AI-ს უპირატესობებს სწავლების პროცესში, პრაქტიკულ მაგალითებს, გამოწვევებს და დასკვნას. თითოეული სექცია უნდა იყოს წარმოდგენილი ცალკე სლაიდზე. გამოიყენე სადა და პროფესიონალური დიზაინი."</em></p>
-                    <p><strong>ENG Prompt:</strong> <em>"Create an HTML presentation on the topic 'Using AI in Education'. The presentation should include an introduction, the advantages of AI in the learning process, practical examples, challenges, and a conclusion. Each section should be on a separate slide. Use a clean and professional design."</em></p>
-                    <button onclick="copyToClipboard(this)">GEO პრომპტის კოპირება</button>
+                    <p><strong>ინსტრუმენტი:</strong> პრეზენტაციის/HTML გენერატორი (მაგ: Gemini <a href="https://poe.com" target="_blank">Poe.com</a>-ზე)</p>
+                    <p><span class="prompt-label prompt-good">კარგი GEO პრომპტი:</span> <em class="prompt-text-geo">"შექმენი ერთი HTML ფაილი, რომელიც წარმოადგენს პრეზენტაციას თემაზე 'AI-ს გამოყენება მცირე ბიზნესის განვითარებისთვის'. პრეზენტაცია უნდა შეიცავდეს 5 სლაიდს: 1. შესავალი (პრობლემა, რომელსაც AI წყვეტს), 2. AI ინსტრუმენტები მარკეტინგისთვის, 3. AI ინსტრუმენტები მომხმარებელთა მომსახურებისთვის, 4. AI ინსტრუმენტები ეფექტურობის ზრდისთვის, 5. დასკვნა და მოწოდება მოქმედებისკენ. გამოიყენე თანამედროვე დიზაინი, Bootstrap CSS სტილები, და თითოეულ სლაიდზე შესაბამისი იკონკა FontAwesome-დან."</em></p>
+                    <p><span class="prompt-label prompt-good">Good ENG Prompt:</span> <em class="prompt-text-eng">"Create a single HTML file that serves as a presentation on 'Using AI for Small Business Growth'. The presentation must include 5 slides: 1. Introduction (problem AI solves), 2. AI tools for Marketing, 3. AI tools for Customer Service, 4. AI tools for Efficiency, 5. Conclusion and Call to Action. Use a modern design with Bootstrap CSS styles and include a relevant FontAwesome icon on each slide."</em></p>
+                    <p><span class="prompt-label prompt-bad">ცუდი GEO პრომპტი:</span> <em class="prompt-text-geo">"HTML პრეზენტაცია AI-ზე."</em></p>
+                    <p><span class="prompt-label prompt-bad">Bad ENG Prompt:</span> <em class="prompt-text-eng">"HTML presentation AI."</em></p>
+                    <button onclick="copyToClipboard(this, 'GEO')">GEO პრომპტის კოპირება</button>
                     <button onclick="copyToClipboard(this, 'ENG')">ENG Prompt Copy</button>
+                    <p class="tool-link">სცადე <a href="https://poe.com" target="_blank">Poe.com</a>-ზე</p>
                 </div>
 
             </section>
@@ -385,18 +425,24 @@
                 </ul>
 
                 <div class="prompt-example">
-                    <p><strong>ინსტრუმენტის ტიპი:</strong> ტექსტის გენერატორი (მაგ. ChatGPT, Claude)</p>
-                    <p><strong>GEO პრომპტი:</strong> <em>"დამიწერე სოციალური მედიის პოსტის მოკლე მონახაზი, რომელიც ხაზს უსვამს AI-ს როლს კონტენტის პერსონალიზაციაში. ტონი უნდა იყოს ინფორმაციული და დამაინტრიგებელი."</em></p>
-                    <p><strong>ENG Prompt:</strong> <em>"Write a short social media post outline highlighting the role of AI in content personalization. The tone should be informative and intriguing."</em></p>
-                    <button onclick="copyToClipboard(this)">GEO პრომპტის კოპირება</button>
+                    <p><strong>ინსტრუმენტი:</strong> ტექსტის გენერატორი (მაგ: Gemini ან ChatGPT <a href="https://poe.com" target="_blank">Poe.com</a>-ზე)</p>
+                    <p><span class="prompt-label prompt-good">კარგი GEO პრომპტი:</span> <em class="prompt-text-geo">"დამიწერე სოციალური მედიის პოსტის (Instagram) მოკლე, მიმზიდველი ტექსტი, რომელიც ხაზს უსვამს AI-ს როლს კონტენტის პერსონალიზაციაში მცირე ბიზნესისთვის. გამოიყენე 2-3 რელევანტური ემოჯი და 3-4 ჰეშთეგი."</em></p>
+                    <p><span class="prompt-label prompt-good">Good ENG Prompt:</span> <em class="prompt-text-eng">"Write a short, engaging Instagram post text highlighting the role of AI in content personalization for small businesses. Use 2-3 relevant emojis and 3-4 hashtags."</em></p>
+                    <p><span class="prompt-label prompt-bad">ცუდი GEO პრომპტი:</span> <em class="prompt-text-geo">"პოსტი AI-ზე."</em></p>
+                    <p><span class="prompt-label prompt-bad">Bad ENG Prompt:</span> <em class="prompt-text-eng">"Post about AI."</em></p>
+                    <button onclick="copyToClipboard(this, 'GEO')">GEO პრომპტის კოპირება</button>
                     <button onclick="copyToClipboard(this, 'ENG')">ENG Prompt Copy</button>
+                    <p class="tool-link">სცადე <a href="https://poe.com" target="_blank">Poe.com</a>-ზე</p>
                 </div>
                 <div class="prompt-example">
-                    <p><strong>ინსტრუმენტის ტიპი:</strong> SEO ოპტიმიზაციის ხელსაწყო (AI 기반)</p>
-                    <p><strong>GEO პრომპტი:</strong> <em>"გააანალიზე ეს ბლოგპოსტი [ლინკი პოსტზე] და შემომთავაზე SEO საკვანძო სიტყვები და რეკომენდაციები მისი ხილვადობის გასაუმჯობესებლად."</em></p>
-                    <p><strong>ENG Prompt:</strong> <em>"Analyze this blog post [link to post] and suggest SEO keywords and recommendations to improve its visibility."</em></p>
-                    <button onclick="copyToClipboard(this)">GEO პრომპტის კოპირება</button>
+                    <p><strong>ინსტრუმენტი:</strong> SEO ოპტიმიზაციის ხელსაწყო (მაგ: AI ბოტი <a href="https://poe.com" target="_blank">Poe.com</a>-ზე, სპეციალიზირებული SEO ფუნქციით)</p>
+                    <p><span class="prompt-label prompt-good">კარგი GEO პრომპტი:</span> <em class="prompt-text-geo">"გააანალიზე ეს ბლოგპოსტის ტექსტი [ჩასვით ტექსტი აქ] თემაზე 'ციფრული მარკეტინგის სტრატეგიები 2024'. შემომთავაზე 5 ძირითადი SEO საკვანძო სიტყვა (long-tail-ის ჩათვლით), მეტა აღწერა (155 სიმბოლომდე) და 3 რეკომენდაცია ტექსტის შინაარსის გასაუმჯობესებლად SEO-სთვის."</em></p>
+                    <p><span class="prompt-label prompt-good">Good ENG Prompt:</span> <em class="prompt-text-eng">"Analyze this blog post text [paste text here] on 'Digital Marketing Strategies 2024'. Suggest 5 main SEO keywords (including long-tail), a meta description (up to 155 characters), and 3 content improvement recommendations for SEO."</em></p>
+                    <p><span class="prompt-label prompt-bad">ცუდი GEO პრომპტი:</span> <em class="prompt-text-geo">"SEO რჩევები."</em></p>
+                    <p><span class="prompt-label prompt-bad">Bad ENG Prompt:</span> <em class="prompt-text-eng">"SEO tips."</em></p>
+                    <button onclick="copyToClipboard(this, 'GEO')">GEO პრომპტის კოპირება</button>
                     <button onclick="copyToClipboard(this, 'ENG')">ENG Prompt Copy</button>
+                    <p class="tool-link">სცადე <a href="https://poe.com" target="_blank">Poe.com</a>-ზე</p>
                 </div>
 
             </section>
@@ -417,7 +463,7 @@
                     </li>
                     <li><strong>დიზაინი (გრაფიკული, ვებ, UX/UI):</strong>
                         <ul>
-                            <li>ლოგოების, ილუსტრაციების, ბანერების და სხვა გრაფიკული ელემენტების სწრაფი პროტოტიპირება.</li>
+                            <li>ლოგოების, ილუსტრაციების, ბანერების და სხვა გრაფიკული ელემენტების სწრაფი პროტოტიპირება (<a href="https://recraft.ai" target="_blank">Recraft.ai</a>, <a href="https://poe.com" target="_blank">Poe.com</a>-ზე Imagen4/Flux).</li>
                             <li>ვებ-გვერდების დიზაინის ვარიანტების გენერირება.</li>
                             <li>ფერთა პალიტრებისა და შრიფტების ავტომატური შერჩევა.</li>
                             <li>მომხმარებლის გამოცდილების (UX) ანალიზი და გაუმჯობესების რეკომენდაციები.</li>
@@ -433,7 +479,7 @@
                     </li>
                     <li><strong>ფოტოგრაფია და ვიდეოგრაფია:</strong>
                         <ul>
-                            <li>ფოტოების ხარისხის გაუმჯობესება, რეტუშირება და სტილიზაცია.</li>
+                            <li>ფოტოების ხარისხის გაუმჯობესება, რეტუშირება და სტილიზაცია (<a href="https://poe.com" target="_blank">Poe.com</a>-ზე ინსტრუქციებზე დაფუძნებული რედაქტორები).</li>
                             <li>ვიდეო კადრების სტაბილიზაცია და ფერების კორექცია.</li>
                             <li>უნიკალური ვიზუალური ეფექტების შექმნა.</li>
                             <li>ძველი ან დაზიანებული ფოტო/ვიდეო მასალის აღდგენა.</li>
@@ -449,28 +495,34 @@
                 </ul>
 
                 <div class="prompt-example">
-                    <p><strong>ინსტრუმენტის ტიპი:</strong> სურათების გენერატორი (მაგ. Midjourney, DALL-E)</p>
-                    <p><strong>GEO პრომპტი:</strong> <em>"შექმენი ფუტურისტული ქალაქის პეიზაჟის სურათი, სადაც დომინირებს ნეონის ფერები და მფრინავი მანქანები, კიბერპანკის სტილში."</em></p>
-                    <button onclick="copyToClipboard(this)">GEO პრომპტის კოპირება</button>
+                    <p><strong>ინსტრუმენტი:</strong> სურათების გენერატორი (მაგ: Imagen4 ან Flux <a href="https://poe.com" target="_blank">Poe.com</a>-ზე)</p>
+                    <p><span class="prompt-label prompt-good">კარგი GEO პრომპტი:</span> <em class="prompt-text-geo">"შექმენი ფუტურისტული ქალაქის პეიზაჟის ფოტორეალისტური სურათი ღამით. ცათამბჯენები განათებულია ნეონის ფერებით (ვარდისფერი, ცისფერი), ქუჩებში მოძრაობენ მფრინავი მანქანები. ატმოსფერო: კიბერპანკი, დეტალიზებული, მაღალი რეზოლუცია."</em></p>
+                    <p><span class="prompt-label prompt-good">Good ENG Prompt:</span> <em class="prompt-text-eng">"Create a photorealistic image of a futuristic cityscape at night. Skyscrapers are illuminated with neon colors (pink, blue), and flying cars move through the streets. Atmosphere: cyberpunk, detailed, high resolution."</em></p>
+                    <p><span class="prompt-label prompt-bad">ცუდი GEO პრომპტი:</span> <em class="prompt-text-geo">"მომავლის ქალაქი."</em></p>
+                    <p><span class="prompt-label prompt-bad">Bad ENG Prompt:</span> <em class="prompt-text-eng">"Future city."</em></p>
+                    <button onclick="copyToClipboard(this, 'GEO')">GEO პრომპტის კოპირება</button>
+                    <button onclick="copyToClipboard(this, 'ENG')">ENG Prompt Copy</button>
+                    <p class="tool-link">სცადე <a href="https://poe.com" target="_blank">Poe.com</a>-ზე</p>
                 </div>
                 <div class="prompt-example">
-                    <p><strong>ინსტრუმენტის ტიპი:</strong> Text-to-Speech (TTS)</p>
-                    <p><strong>GEO პრომპტი:</strong> <em>"გაახმოვანე ეს ტექსტი: 'კეთილი იყოს თქვენი მობრძანება ჩვენს პოდკასტზე, სადაც დღეს ვისაუბრებთ ხელოვნური ინტელექტის მომავალზე.' გამოიყენე მეგობრული და ენერგიული მამაკაცის ხმა."</em></p>
-                    <button onclick="copyToClipboard(this)">GEO პრომპტის კოპირება</button>
+                    <p><strong>ინსტრუმენტი:</strong> Text-to-Speech (TTS) (ხელმისაწვდომია <a href="https://poe.com" target="_blank">Poe.com</a>-ის ზოგიერთ ბოტში ან გარე ინსტრუმენტებში)</p>
+                    <p><span class="prompt-label prompt-good">კარგი GEO პრომპტი:</span> <em class="prompt-text-geo">"გაახმოვანე ეს ტექსტი: 'კეთილი იყოს თქვენი მობრძანება ჩვენს ყოველკვირეულ პოდკასტზე, სადაც დღეს ვისაუბრებთ ხელოვნური ინტელექტის უახლეს მიღწევებზე კრეატიულ ინდუსტრიაში.' გამოიყენე ბუნებრივი, მეგობრული და ენერგიული ახალგაზრდა მამაკაცის ხმა, ქართული აქცენტით."</em></p>
+                    <p><span class="prompt-label prompt-good">Good ENG Prompt:</span> <em class="prompt-text-eng">"Voice this text: 'Welcome to our weekly podcast, where today we'll be discussing the latest advancements of artificial intelligence in the creative industry.' Use a natural, friendly, and energetic young male voice with a standard American accent."</em></p>
+                    <p><span class="prompt-label prompt-bad">ცუდი GEO პრომპტი:</span> <em class="prompt-text-geo">"წაიკითხე ეს."</em></p>
+                    <p><span class="prompt-label prompt-bad">Bad ENG Prompt:</span> <em class="prompt-text-eng">"Read this."</em></p>
+                    <button onclick="copyToClipboard(this, 'GEO')">GEO პრომპტის კოპირება</button>
+                    <button onclick="copyToClipboard(this, 'ENG')">ENG Prompt Copy</button>
+                    <p class="tool-link">მოძებნე TTS ბოტები <a href="https://poe.com" target="_blank">Poe.com</a>-ზე</p>
                 </div>
                  <div class="prompt-example">
-                    <p><strong>ინსტრუმენტის ტიპი:</strong> სურათების გენერატორი (მაგ. DALL-E, Stable Diffusion)</p>
-                    <p><strong>GEO პრომპტი:</strong> <em>"შექმენი ფუტურისტული ქალაქის პეიზაჟის სურათი, სადაც დომინირებს ნეონის ფერები და მფრინავი მანქანები, კიბერპანკის სტილში."</em></p>
-                    <p><strong>ENG Prompt:</strong> <em>"Create an image of a futuristic cityscape dominated by neon colors and flying cars, in a cyberpunk style."</em></p>
-                    <button onclick="copyToClipboard(this)">GEO პრომპტის კოპირება</button>
+                    <p><strong>ინსტრუმენტი:</strong> დიზაინერული ასეტების გენერატორი (<a href="https://recraft.ai" target="_blank">Recraft.ai</a>)</p>
+                    <p><span class="prompt-label prompt-good">კარგი GEO პრომპტი:</span> <em class="prompt-text-geo">"შექმენი 3D ილუსტრაცია მობილური აპლიკაციისთვის, რომელიც ეხება მედიტაციას. ილუსტრაციაზე გამოსახული უნდა იყოს მშვიდი პერსონაჟი ლოტოსის პოზაში, აბსტრაქტულ, დამამშვიდებელ ფონზე (პასტელური ფერები, რბილი გრადიენტები). სტილი: მინიმალისტური, თანამედროვე, ვექტორული გრაფიკის მსგავსი."</em></p>
+                    <p><span class="prompt-label prompt-good">Good ENG Prompt:</span> <em class="prompt-text-eng">"Create a 3D illustration for a mobile meditation app. The illustration should feature a calm character in a lotus pose on an abstract, soothing background (pastel colors, soft gradients). Style: minimalist, modern, vector-like."</em></p>
+                    <p><span class="prompt-label prompt-bad">ცუდი GEO პრომპტი:</span> <em class="prompt-text-geo">"მედიტაციის სურათი."</em></p>
+                    <p><span class="prompt-label prompt-bad">Bad ENG Prompt:</span> <em class="prompt-text-eng">"Meditation image."</em></p>
+                    <button onclick="copyToClipboard(this, 'GEO')">GEO პრომპტის კოპირება</button>
                     <button onclick="copyToClipboard(this, 'ENG')">ENG Prompt Copy</button>
-                </div>
-                <div class="prompt-example">
-                    <p><strong>ინსტრუმენტის ტიპი:</strong> სურათების გენერატორი (მაგ. DALL-E, Recraft.ai)</p>
-                    <p><strong>GEO პრომპტი:</strong> <em>"შექმენი 3D ილუსტრაცია, სადაც ასახულია ტვინი, რომელიც დაკავშირებულია ციფრულ ქსელებთან. ფონზე გამოიყენე კოდის სიმბოლოები. სტილი: ტექნოლოგიური, თანამედროვე."</em></p>
-                    <p><strong>ENG Prompt:</strong> <em>"Create a 3D illustration of a brain connected to digital networks. Use code symbols in the background. Style: technological, modern."</em></p>
-                    <button onclick="copyToClipboard(this)">GEO პრომპტის კოპირება</button>
-                    <button onclick="copyToClipboard(this, 'ENG')">ENG Prompt Copy</button>
+                    <p class="tool-link">სცადე <a href="https://recraft.ai" target="_blank">Recraft.ai</a>-ზე</p>
                 </div>
 
             </section>
@@ -478,31 +530,31 @@
             <!-- Section 4: ძირითადი AI ინსტრუმენტების ტიპები -->
             <section id="ai-tool-types">
                 <h2>ძირითადი AI ინსტრუმენტების ტიპები</h2>
-                <p>დღესდღეობით არსებობს AI ინსტრუმენტების მრავალფეროვანი სპექტრი, რომლებიც კონტენტ კრეატორებს სხვადასხვა ამოცანების გადაჭრაში ეხმარება. მოდით, განვიხილოთ ძირითადი კატეგორიები:</p>
+                <p>დღესდღეობით არსებობს AI ინსტრუმენტების მრავალფეროვანი სპექტრი, რომლებიც კონტენტ კრეატორებს სხვადასხვა ამოცანების გადაჭრაში ეხმარება. ბევრი მათგანი ხელმისაწვდომია პლატფორმებზე, როგორიცაა <a href="https://poe.com" target="_blank">Poe.com</a> (სადაც ინტეგრირებულია Gemini, ChatGPT, Imagen4, Flux და სხვა მრავალი ბოტი) და <a href="https://recraft.ai" target="_blank">Recraft.ai</a> (რომელიც ფოკუსირებულია დიზაინერულ ასეტებზე). მოდით, განვიხილოთ ძირითადი კატეგორიები:</p>
                 <ul>
-                    <li><strong>ტექსტზე დაფუძნებული AI ინსტრუმენტები (LLMs - Large Language Models):</strong>
+                    <li><strong>ტექსტზე დაფუძნებული AI ინსტრუმენტები (LLMs - Large Language Models):</strong> ხელმისაწვდომია <a href="https://poe.com" target="_blank">Poe.com</a>-ზე.
                         <ul>
-                            <li><strong>გენერატორები:</strong> ქმნიან ორიგინალურ ტექსტებს (სტატიები, ბლოგპოსტები, სარეკლამო ტექსტები, პოეზია, კოდი და ა.შ.) მოცემული მითითებების (პრომპტების) საფუძველზე. მაგალითები: GPT-სერია (ChatGPT), Claude, Google Gemini.</li>
+                            <li><strong>გენერატორები:</strong> ქმნიან ორიგინალურ ტექსტებს (სტატიები, ბლოგპოსტები, სარეკლამო ტექსტები, პოეზია, კოდი და ა.შ.) მოცემული მითითებების (პრომპტების) საფუძველზე.</li>
                             <li><strong>რედაქტორები და კორექტორები:</strong> აუმჯობესებენ არსებულ ტექსტებს, ასწორებენ გრამატიკულ და სტილისტურ შეცდომებს, გვთავაზობენ სინონიმებსა და უკეთეს ფორმულირებებს.</li>
                             <li><strong>მთარგმნელები:</strong> ახორციელებენ ტექსტის ავტომატურ თარგმნას სხვადასხვა ენაზე მაღალი სიზუსტით.</li>
                             <li><strong>შეჯამების ინსტრუმენტები:</strong> ქმნიან ვრცელი ტექსტების მოკლე და ინფორმაციულ ვერსიებს.</li>
                         </ul>
                     </li>
-                    <li><strong>გამოსახულების (ფოტო) გენერატორები და რედაქტორები:</strong>
+                    <li><strong>გამოსახულების (ფოტო/ილუსტრაცია) გენერატორები და რედაქტორები:</strong>
                         <ul>
-                            <li><strong>Text-to-Image გენერატორები:</strong> ტექსტური აღწერის (პრომპტის) საფუძველზე ქმნიან უნიკალურ გამოსახულებებს. მაგალითები: DALL-E, Stable Diffusion, Recraft.ai.</li>
-                            <li><strong>Image-to-Image რედაქტორები:</strong> ცვლიან არსებულ გამოსახულებებს სხვა სტილში, ამატებენ ან შლიან ობიექტებს, აუმჯობესებენ ხარისხს.</li>
-                            <li><strong>ფოტო რეტუშირებისა და გაუმჯობესების AI:</strong> ავტომატურად აშორებენ დეფექტებს, აუმჯობესებენ ფერებს, სიმკვეთრეს და ა.შ.</li>
+                            <li><strong>Text-to-Image გენერატორები:</strong> ტექსტური აღწერის (პრომპტის) საფუძველზე ქმნიან უნიკალურ გამოსახულებებს (მაგ: Imagen4, Flux <a href="https://poe.com" target="_blank">Poe.com</a>-ზე).</li>
+                            <li><strong>ინსტრუქციებზე დაფუძნებული რედაქტორები:</strong> ცვლიან არსებულ გამოსახულებებს ტექსტური ინსტრუქციების მიხედვით (ხელმისაწვდომია <a href="https://poe.com" target="_blank">Poe.com</a>-ზე).</li>
+                            <li><strong>დიზაინზე ფოკუსირებული გენერატორები:</strong> ქმნიან და არედაქტირებენ გრაფიკულ ასეტებს, იკონკებს, ილუსტრაციებს, სთორიბორდებს (<a href="https://recraft.ai" target="_blank">Recraft.ai</a>).</li>
                         </ul>
                     </li>
-                    <li><strong>ვიდეო გენერატორები და რედაქტორები:</strong>
+                    <li><strong>ვიდეო გენერატორები და რედაქტორები:</strong> ზოგიერთი ფუნქციენალი შეიძლება იყოს ხელმისაწვდომი <a href="https://poe.com" target="_blank">Poe.com</a>-ის სპეციალიზებულ ბოტებში.
                         <ul>
-                            <li><strong>Text-to-Video / Image-to-Video:</strong> ტექსტური აღწერებიდან ან სტატიკური გამოსახულებებიდან ქმნიან ვიდეო კლიპებს. მაგალითები: Runway, Pika, Sora (OpenAI).</li>
+                            <li><strong>Text-to-Video / Image-to-Video:</strong> ტექსტური აღწერებიდან ან სტატიკური გამოსახულებებიდან ქმნიან ვიდეო კლიპებს.</li>
                             <li><strong>ავტომატური მონტაჟის ხელსაწყოები:</strong> ეხმარებიან ვიდეო მასალის დაჭრაში, კადრების გადაწყობაში, ეფექტების დამატებაში.</li>
                             <li><strong>სუბტიტრებისა და გახმოვანების AI:</strong> ავტომატურად ქმნიან სუბტიტრებს და ახმოვანებენ ვიდეოებს სხვადასხვა ენაზე.</li>
                         </ul>
                     </li>
-                    <li><strong>აუდიო ინსტრუმენტები:</strong>
+                    <li><strong>აუდიო ინსტრუმენტები:</strong> ფუნქციები, როგორიცაა Text-to-Speech, ხელმისაწვდომია <a href="https://poe.com" target="_blank">Poe.com</a>-ის ზოგიერთ ბოტში.
                         <ul>
                             <li><strong>Text-to-Speech (TTS):</strong> ტექსტს გარდაქმნიან ბუნებრივად ჟღერად მეტყველებად.</li>
                             <li><strong>Speech-to-Text (STT):</strong> აუდიო ჩანაწერს გარდაქმნიან ტექსტურ ფორმატში.</li>
@@ -514,25 +566,34 @@
                 </ul>
 
                 <div class="prompt-example">
-                    <p><strong>ინსტრუმენტის ტიპი:</strong> Text-to-Image (მაგ. Stable Diffusion, Recraft.ai)</p>
-                    <p><strong>GEO პრომპტი:</strong> <em>"შექმენი ლოგო ყავის მაღაზიისთვის სახელად 'დილის სურნელი'. ლოგო უნდა იყოს მინიმალისტური, გამოსახავდეს ყავის ჭიქას და მზის სხივს. ფერები: თბილი ყავისფერი და ოქროსფერი."</em></p>
-                    <p><strong>ENG Prompt:</strong> <em>"Create a logo for a coffee shop called 'Morning Aroma'. The logo should be minimalist, featuring a coffee cup and a sunbeam. Colors: warm brown and gold."</em></p>
-                    <button onclick="copyToClipboard(this)">GEO პრომპტის კოპირება</button>
+                    <p><strong>ინსტრუმენტი:</strong> ლოგოს/იკონკის გენერატორი (<a href="https://recraft.ai" target="_blank">Recraft.ai</a> ან Imagen4 <a href="https://poe.com" target="_blank">Poe.com</a>-ზე)</p>
+                    <p><span class="prompt-label prompt-good">კარგი GEO პრომპტი:</span> <em class="prompt-text-geo">"შექმენი მინიმალისტური ლოგო ყავის მაღაზიისთვის სახელად 'დილის სურნელი'. ლოგოზე გამოსახული უნდა იყოს სტილიზებული ყავის მარცვალი და ამომავალი მზის სხივი. ფერები: თბილი ყავისფერი (#6F4E37) და ოქროსფერი (#FFD700). სტილი: ბრტყელი დიზაინი, თანამედროვე, ვექტორული."</em></p>
+                    <p><span class="prompt-label prompt-good">Good ENG Prompt:</span> <em class="prompt-text-eng">"Create a minimalist logo for a coffee shop called 'Morning Aroma'. The logo should feature a stylized coffee bean and a rising sunbeam. Colors: warm brown (#6F4E37) and gold (#FFD700). Style: flat design, modern, vector."</em></p>
+                    <p><span class="prompt-label prompt-bad">ცუდი GEO პრომპტი:</span> <em class="prompt-text-geo">"ყავის ლოგო."</em></p>
+                    <p><span class="prompt-label prompt-bad">Bad ENG Prompt:</span> <em class="prompt-text-eng">"Coffee logo."</em></p>
+                    <button onclick="copyToClipboard(this, 'GEO')">GEO პრომპტის კოპირება</button>
                     <button onclick="copyToClipboard(this, 'ENG')">ENG Prompt Copy</button>
+                    <p class="tool-link">სცადე <a href="https://recraft.ai" target="_blank">Recraft.ai</a> ან <a href="https://poe.com" target="_blank">Poe.com</a></p>
                 </div>
                  <div class="prompt-example">
-                    <p><strong>ინსტრუმენტის ტიპი:</strong> ვიდეო გენერატორი (მაგ. Runway, Pika)</p>
-                    <p><strong>GEO პრომპტი:</strong> <em>"გააკეთე მოკლე (10 წამიანი) ვიდეო კლიპი ამ ტექსტზე დაყრდნობით: 'ტყეში მოსეირნე ირემი მზის ჩასვლისას'. სტილი: კინემატოგრაფიული, მშვიდი მუსიკით."</em></p>
-                    <p><strong>ENG Prompt:</strong> <em>"Create a short (10-second) video clip based on this text: 'A deer walking in the forest at sunset'. Style: cinematic, with calm music."</em></p>
-                    <button onclick="copyToClipboard(this)">GEO პრომპტის კოპირება</button>
+                    <p><strong>ინსტრუმენტი:</strong> ვიდეო კლიპის იდეების გენერატორი (მაგ: Gemini <a href="https://poe.com" target="_blank">Poe.com</a>-ზე)</p>
+                    <p><span class="prompt-label prompt-good">კარგი GEO პრომპტი:</span> <em class="prompt-text-geo">"დამიგენერირე სცენარი 15 წამიანი სარეკლამო ვიდეო რგოლისთვის, რომელიც ეძღვნება ახალ მობილურ თამაშს 'კოსმოსური მოგზაური'. ვიდეომ უნდა აჩვენოს თამაშის გრაფიკა, მთავარი პერსონაჟი და მოკლედ გადმოსცეს თამაშის მიზანი. მოწოდება: 'გადმოწერე დღესვე!'"</em></p>
+                    <p><span class="prompt-label prompt-good">Good ENG Prompt:</span> <em class="prompt-text-eng">"Generate a script for a 15-second promotional video clip for a new mobile game 'Cosmic Traveler'. The video should showcase game graphics, the main character, and briefly convey the game's objective. Call to action: 'Download today!'"</em></p>
+                    <p><span class="prompt-label prompt-bad">ცუდი GEO პრომპტი:</span> <em class="prompt-text-geo">"ვიდეო თამაშისთვის."</em></p>
+                    <p><span class="prompt-label prompt-bad">Bad ENG Prompt:</span> <em class="prompt-text-eng">"Video for game."</em></p>
+                    <button onclick="copyToClipboard(this, 'GEO')">GEO პრომპტის კოპირება</button>
                     <button onclick="copyToClipboard(this, 'ENG')">ENG Prompt Copy</button>
+                    <p class="tool-link">სცადე <a href="https://poe.com" target="_blank">Poe.com</a>-ზე</p>
                 </div>
                 <div class="prompt-example">
-                    <p><strong>ინსტრუმენტის ტიპი:</strong> მუსიკის გენერატორი (მაგ. Soundraw, AIVA)</p>
-                    <p><strong>GEO პრომპტი:</strong> <em>"შექმენი 1 წუთიანი ფონური მუსიკა სამოტივაციო ვიდეოსთვის. განწყობა: ამაღლებული, ინსპირაციული. ტემპი: საშუალო."</em></p>
-                    <p><strong>ENG Prompt:</strong> <em>"Create 1 minute of background music for a motivational video. Mood: uplifting, inspirational. Tempo: medium."</em></p>
-                    <button onclick="copyToClipboard(this)">GEO პრომპტის კოპირება</button>
+                    <p><strong>ინსტრუმენტი:</strong> სურათის რედაქტორი (ინსტრუქციებზე დაფუძნებული, მაგ: Flux <a href="https://poe.com" target="_blank">Poe.com</a>-ზე)</p>
+                    <p><span class="prompt-label prompt-good">კარგი GEO პრომპტი:</span> <em class="prompt-text-geo">"ამ სურათზე [მიუთითეთ ან ატვირთეთ სურათი], შეცვალე ცის ფერი მზის ჩასვლის დრამატულ ნარინჯისფრად და დაამატე ორი ჩიტის სილუეტი შორს."</em></p>
+                    <p><span class="prompt-label prompt-good">Good ENG Prompt:</span> <em class="prompt-text-eng">"On this image [indicate or upload image], change the sky color to a dramatic sunset orange and add two bird silhouettes in the distance."</em></p>
+                    <p><span class="prompt-label prompt-bad">ცუდი GEO პრომპტი:</span> <em class="prompt-text-geo">"შეცვალე სურათი."</em></p>
+                    <p><span class="prompt-label prompt-bad">Bad ENG Prompt:</span> <em class="prompt-text-eng">"Change image."</em></p>
+                    <button onclick="copyToClipboard(this, 'GEO')">GEO პრომპტის კოპირება</button>
                     <button onclick="copyToClipboard(this, 'ENG')">ENG Prompt Copy</button>
+                    <p class="tool-link">სცადე <a href="https://poe.com" target="_blank">Poe.com</a>-ზე</p>
                 </div>
 
             </section>
@@ -540,7 +601,7 @@
             <!-- Section 5: AI-ს შესაძლებლობები და შეზღუდვები -->
             <section id="capabilities-limitations">
                 <h2>AI-ს შესაძლებლობები და შეზღუდვები</h2>
-                <p>ხელოვნური ინტელექტი მძლავრი ინსტრუმენტია, თუმცა მნიშვნელოვანია მისი რეალური შესაძლებლობებისა და არსებული შეზღუდვების გააზრება, რათა ეფექტურად გამოვიყენოთ იგი და გვქონდეს რეალისტური მოლოდინები.</p>
+                <p>ხელოვნური ინტელექტი მძლავრი ინსტრუმენტია, თუმცა მნიშვნელოვანია მისი რეალური შესაძლებლობებისა და არსებული შეზღუდვების გააზრება, რათა ეფექტურად გამოვიყენოთ იგი და გვქონდეს რეალისტური მოლოდინები. <a href="https://poe.com" target="_blank">Poe.com</a>-ზე და <a href="https://recraft.ai" target="_blank">Recraft.ai</a>-ზე არსებული ინსტრუმენტებიც ამ ზოგად პრინციპებს ექვემდებარება.</p>
 
                 <h3>რისი გაკეთება შეუძლია AI-ს (შესაძლებლობები):</h3>
                 <ul>
@@ -565,27 +626,35 @@
                 </ul>
 
                 <div class="prompt-example">
-                    <p><strong>ინსტრუმენტის ტიპი:</strong> ტექსტის შემაჯამებელი (მაგ. QuillBot, SummarizeBot)</p>
-                    <p><strong>GEO პრომპტი:</strong> <em>"შეაჯამე ეს სამეცნიერო სტატია [ლინკი სტატიაზე] 300 სიტყვაში, გამოყავი ძირითადი მიგნებები და მეთოდოლოგია."</em></p>
-                    <p><strong>ENG Prompt:</strong> <em>"Summarize this scientific article [link to article] in 300 words, highlighting the main findings and methodology."</em></p>
-                    <button onclick="copyToClipboard(this)">GEO პრომპტის კოპირება</button>
+                    <p><strong>ინსტრუმენტი:</strong> ტექსტის შემაჯამებელი (მაგ: Gemini <a href="https://poe.com" target="_blank">Poe.com</a>-ზე)</p>
+                    <p><span class="prompt-label prompt-good">კარგი GEO პრომპტი:</span> <em class="prompt-text-geo">"შეაჯამე ეს სამეცნიერო სტატია [ჩასვით სტატიის ტექსტი ან ლინკი აქ] მაქსიმუმ 300 სიტყვაში. ფოკუსირდი კვლევის მთავარ მიზანზე, გამოყენებულ მეთოდოლოგიაზე, ძირითად შედეგებსა და დასკვნებზე. წარმოადგინე ინფორმაცია ბულეტების სახით."</em></p>
+                    <p><span class="prompt-label prompt-good">Good ENG Prompt:</span> <em class="prompt-text-eng">"Summarize this scientific article [paste article text or link here] in a maximum of 300 words. Focus on the main research objective, methodology used, key results, and conclusions. Present the information in bullet points."</em></p>
+                    <p><span class="prompt-label prompt-bad">ცუდი GEO პრომპტი:</span> <em class="prompt-text-geo">"შეაჯამე ეს."</em></p>
+                    <p><span class="prompt-label prompt-bad">Bad ENG Prompt:</span> <em class="prompt-text-eng">"Summarize this."</em></p>
+                    <button onclick="copyToClipboard(this, 'GEO')">GEO პრომპტის კოპირება</button>
                     <button onclick="copyToClipboard(this, 'ENG')">ENG Prompt Copy</button>
+                    <p class="tool-link">სცადე <a href="https://poe.com" target="_blank">Poe.com</a>-ზე</p>
                 </div>
                  <div class="prompt-example">
-                    <p><strong>ინსტრუმენტის ტიპი:</strong> ფაქტების გადამოწმების AI (კონცეპტუალური)</p>
-                    <p><strong>GEO პრომპტი:</strong> <em>"გადაამოწმე ამ ტექსტში მოყვანილი სტატისტიკური მონაცემების სიზუსტე: 'კვლევების თანახმად, X კომპანიის ბაზრის წილი 2023 წელს 60%-ს შეადგენდა.' მიუთითე წყაროები."</em></p>
-                    <p><strong>ENG Prompt:</strong> <em>"Verify the accuracy of the statistical data cited in this text: 'According to studies, Company X's market share in 2023 was 60%.' Cite sources."</em></p>
-                    <button onclick="copyToClipboard(this)">GEO პრომპტის კოპირება</button>
+                    <p><strong>ინსტრუმენტი:</strong> ფაქტების გადამოწმების AI (სპეციალიზებული ბოტი <a href="https://poe.com" target="_blank">Poe.com</a>-ზე)</p>
+                    <p><span class="prompt-label prompt-good">კარგი GEO პრომპტი:</span> <em class="prompt-text-geo">"გადაამოწმე ამ ტექსტში მოყვანილი სტატისტიკური მონაცემის სიზუსტე: 'კვლევების თანახმად, X კომპანიის ბაზრის წილი 2023 წელს 60%-ს შეადგენდა.' თუ შესაძლებელია, მიუთითე პირველწყაროები ან სანდო კვლევები, რომლებიც ამ მონაცემს ადასტურებენ ან უარყოფენ."</em></p>
+                    <p><span class="prompt-label prompt-good">Good ENG Prompt:</span> <em class="prompt-text-eng">"Verify the accuracy of the statistical data cited in this text: 'According to studies, Company X's market share in 2023 was 60%.' If possible, provide primary sources or reliable studies that confirm or deny this data."</em></p>
+                    <p><span class="prompt-label prompt-bad">ცუდი GEO პრომპტი:</span> <em class="prompt-text-geo">"სწორია ეს ინფო?"</em></p>
+                    <p><span class="prompt-label prompt-bad">Bad ENG Prompt:</span> <em class="prompt-text-eng">"Is this info correct?"</em></p>
+                    <button onclick="copyToClipboard(this, 'GEO')">GEO პრომპტის კოპირება</button>
                     <button onclick="copyToClipboard(this, 'ENG')">ENG Prompt Copy</button>
+                    <p class="tool-link">სცადე <a href="https://poe.com" target="_blank">Poe.com</a>-ზე</p>
                 </div>
                 <div class="prompt-example">
-                    <p><strong>ინსტრუმენტის ტიპი:</strong> კოდის გენერატორი (მაგ. GitHub Copilot, Gemini)</p>
-                    <p><strong>GEO პრომპტი:</strong> <em>"დამიწერე Python-ის ფუნქცია, რომელიც იღებს სიტყვების სიას და აბრუნებს ყველაზე ხშირად გამეორებულ სიტყვას."</em></p>
-                    <p><strong>ENG Prompt:</strong> <em>"Write a Python function that takes a list of strings and returns the most frequently occurring string."</em></p>
-                    <button onclick="copyToClipboard(this)">GEO პრომპტის კოპირება</button>
+                    <p><strong>ინსტრუმენტი:</strong> კოდის გენერატორი (მაგ: Gemini ან ChatGPT <a href="https://poe.com" target="_blank">Poe.com</a>-ზე)</p>
+                    <p><span class="prompt-label prompt-good">კარგი GEO პრომპტი:</span> <em class="prompt-text-geo">"დამიწერე Python-ის ფუნქცია, რომელიც იღებს სიტყვების სიას არგუმენტად და აბრუნებს ამ სიაში ყველაზე ხშირად გამეორებულ სიტყვას. თუ რამდენიმე სიტყვა ერთნაირი სიხშირით მეორდება, დააბრუნოს ის, რომელიც სიაში პირველი შეგვხვდა. დაურთე ფუნქციის მოკლე დოკუმენტაცია (docstring)."</em></p>
+                    <p><span class="prompt-label prompt-good">Good ENG Prompt:</span> <em class="prompt-text-eng">"Write a Python function that takes a list of strings as an argument and returns the most frequently occurring string in that list. If multiple strings have the same highest frequency, return the one that appears first in the list. Include a brief docstring for the function."</em></p>
+                    <p><span class="prompt-label prompt-bad">ცუდი GEO პრომპტი:</span> <em class="prompt-text-geo">"პითონის კოდი."</em></p>
+                    <p><span class="prompt-label prompt-bad">Bad ENG Prompt:</span> <em class="prompt-text-eng">"Python code."</em></p>
+                    <button onclick="copyToClipboard(this, 'GEO')">GEO პრომპტის კოპირება</button>
                     <button onclick="copyToClipboard(this, 'ENG')">ENG Prompt Copy</button>
+                    <p class="tool-link">სცადე <a href="https://poe.com" target="_blank">Poe.com</a>-ზე</p>
                 </div>
-
             </section>
 
             <!-- Section 6: პრაქტიკული დავალება -->
@@ -680,10 +749,17 @@
 <script>
     function copyToClipboard(buttonElement, lang) {
         let promptText;
-        if (lang === 'ENG') {
-            promptText = buttonElement.parentElement.querySelector('p:nth-of-type(3) em').innerText;
+        // Find the parent .prompt-example div
+        const promptExampleDiv = buttonElement.closest('.prompt-example');
+
+        if (lang === 'GEO') {
+            promptText = promptExampleDiv.querySelector('.prompt-text-geo').innerText;
+        } else if (lang === 'ENG') {
+            promptText = promptExampleDiv.querySelector('.prompt-text-eng').innerText;
         } else {
-            promptText = buttonElement.parentElement.querySelector('p:nth-of-type(2) em').innerText;
+            // Fallback or error for undefined language, though current buttons specify GEO or ENG
+            console.error('Copy language not specified or unknown');
+            return;
         }
         
         navigator.clipboard.writeText(promptText).then(() => {
